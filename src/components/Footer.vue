@@ -1,7 +1,7 @@
 <template>
   <footer>
      <img src="@/assets/MoonMothRetro.png" alt="Moon Moth Logo">
-     <small>&copy; 2018 Kyle Weintraub | Moon Moth Productions</small>
+     <small>&copy; 2018 Kyle Weintraub</small>
   </footer>
 </template>
 
