@@ -6,14 +6,20 @@
             <p>{{ $store.state.count }}</p>
             <button @click="increment">Add 1</button>
         </div>
+        <h2>File Test</h2>
+        <TestForm></TestForm>
     </main>
 </template>
 
 <script>
 import { mapActions } from "vuex";
+import TestForm from "./TestForm"
 
 export default {
   name: "Main",
+  components: {
+      TestForm
+  },
   methods: mapActions([
       'increment'
   ])
