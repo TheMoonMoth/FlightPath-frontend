@@ -8,28 +8,18 @@ const state = {
 };
 
 const mutations = {
-  increment(state) {
-    state.count++;
-  },
-  decrement(state) {
-    state.count--;
-  },
   stateFeatures(state, json) {
     state.features = json;
   }
 };
 
+const apiUrlDev = "http://localhost:5000"
+
 const actions = {
-  increment: ({ commit }) => commit("increment"),
   fetchFeatures: ({ commit }) => {
-    fetch("http://localhost:5000/tester")
-      .then(res => {
-        // console.log(res.json());
-        return res.json();
-      })
-      .then(json => {
-        console.log("to be commited", json);
-        
+    fetch(apiUrlDev + "/tester")
+      .then(res => res.json())
+      .then(json => {       
         commit("stateFeatures", json);
       })
       .catch(error => {

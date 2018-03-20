@@ -1,7 +1,7 @@
 <template>
   <header>
     <div>
-      <h1>Flight Path</h1>
+      <h1>Space Lane</h1>
       <h2>Your Science Fiction Destination</h2>
     </div>
     
@@ -30,7 +30,24 @@ export default {
 header {
   background-color: hsl(0,0%,30%);
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 10px 25px;
+}
+
+nav {
+  width: 50%;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+
+nav ul a {
+  color: black;
+  text-decoration: none;
 }
 
 </style>
