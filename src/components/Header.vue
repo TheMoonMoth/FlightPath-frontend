@@ -25,6 +25,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+
+header {
+  background-color: hsl(0,0%,30%);
+  display: flex;
+  justify-content: space-between
+}
 
 </style>

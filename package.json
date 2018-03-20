@@ -12,6 +12,7 @@
   "dependencies": {
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
+    "vuetify": "^1.0.9",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
@@ -61,10 +62,15 @@
     "not ie <= 8"
   ],
   "eslintConfig": {
-        
-        "env": {
-            "browser": true,
-            "node": true
-        }
+    "parserOptions": {
+      "sourceType": "module",  
+      "ecmaFeatures": {
+        "ecmaVersion": 6              
+      }
+    }, 
+    "env": {
+      "browser": true,
+      "node": true
     }
+  }
 }

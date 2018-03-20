@@ -4,7 +4,7 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 const state = {
-  count: 0
+  features: []
 };
 
 const mutations = {
@@ -13,11 +13,29 @@ const mutations = {
   },
   decrement(state) {
     state.count--;
+  },
+  stateFeatures(state, json) {
+    state.features = json;
   }
 };
 
 const actions = {
-  increment: ({ commit }) => commit("increment")
+  increment: ({ commit }) => commit("increment"),
+  fetchFeatures: ({ commit }) => {
+    fetch("http://localhost:5000/tester")
+      .then(res => {
+        // console.log(res.json());
+        return res.json();
+      })
+      .then(json => {
+        console.log("to be commited", json);
+        
+        commit("stateFeatures", json);
+      })
+      .catch(error => {
+        console.log(error.statusText);
+      });
+  }
 };
 
 export default new Vuex.Store({
