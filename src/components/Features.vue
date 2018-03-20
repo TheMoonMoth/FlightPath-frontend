@@ -2,11 +2,10 @@
   <main>
       <h2>Featured Content:</h2>
       <section v-for="f in $store.state.features" :key="f.id">
-          <h2>A new story!!</h2>
+          <h2>Story {{f.id}}</h2>
           <h3>{{f.title}}</h3>
-          <h4
-          >{{f.author}}</h4>
-          <p>{{f.body}}</p>
+          <h4>{{f.author}}</h4>
+          <p v-for="para in f.body">{{para}}</p>
       </section>
   </main>
 </template>
@@ -20,5 +19,9 @@ export default {
 </script>
 
 <style>
-
+main section {
+  margin: 10px 25px;
+  width: 60%;
+  height: auto;
+}
 </style>
