@@ -7,13 +7,13 @@
     
     <nav>
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Fiction</a></li>
-        <li><a href="#">Poetry</a></li>
-        <li><a href="#">Visual Art</a></li>
-        <li><a href="#">Submit</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
+        <router-link tage="li" to="home">Home</router-link>
+        <router-link tage="li" to="featured">Fiction</router-link>
+        <router-link tage="li" to="featured">Poetry</router-link>
+        <router-link tage="li" to="featured">Visual Art</router-link>
+        <router-link tage="li" to="submit">Submit Work</router-link>
+        <router-link tage="li" to="about">About</router-link>
+        <router-link tage="li" to="contact">Contact</router-link>
       </ul>
     </nav>
   </header>

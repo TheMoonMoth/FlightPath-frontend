@@ -4,6 +4,7 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 const state = {
+  marquee: "Welcome, please have a seat while we build the page.",
   features: []
 };
 

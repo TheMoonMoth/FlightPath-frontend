@@ -1,8 +1,8 @@
 <template>
     <main>
         <div>
-            <h2>Features</h2>
-            <p>{{ $store.state.features }}</p>
+            <h2>Home</h2>
+            <p>{{ $store.state.marquee }}</p>
         </div>
     </main>
 </template>
