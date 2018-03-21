@@ -1,12 +1,14 @@
 <template>
   <main>
       <h2>Featured Content:</h2>
-      <section v-for="f in $store.state.features" :key="f.id">
-          <h2>Story {{f.id}}</h2>
-          <h3>{{f.title}}</h3>
-          <h4>Written by: {{f.author}}</h4>
-          <p v-for="para in f.body" :key="para">{{para}}</p>
-      </section>
+      <article v-for="f in $store.state.features" :key="f.id">
+          <section>
+            <h2>Story {{f.id}}</h2>
+            <h3>{{f.title}}</h3>
+            <h4>Written by: {{f.author}}</h4>
+            <p v-for="(para, index) in f.body" :key="index">{{para}}</p>
+          </section>
+      </article>
   </main>
 </template>
 
@@ -19,13 +21,13 @@ export default {
 </script>
 
 <style>
-main section {
+main article {
   margin: 10px 25px;
   width: 60%;
   height: auto;
 }
 
-main section h3 {
+main article section h3 {
     text-decoration: underline;
 }
 </style>
