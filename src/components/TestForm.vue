@@ -7,12 +7,12 @@
 </template>
 
 <script>
+import axios from "axios"
 
 export default {
   name: "TestForm",
   methods: {
     handleFileUpload(){
-      // validate file type
       this.file = this.$refs.file.files[0];
     },
     submitFile(e){
@@ -25,7 +25,7 @@ export default {
       })
         .then(res => res.json())
         .then(json => console.log(json))
-        .catch(function() { console.log("failure")})
+        .catch(console.error({message: "not quite right"}))
     }
   },
   data(){
