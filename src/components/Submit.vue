@@ -11,28 +11,28 @@
       
       <div>
       <p>Select submission type:</p>  
-        <input type="radio" name="fiction" id="fiction">
+        <input type="radio" name="upload" id="fiction">
           <label for="fiction">Fiction
           </label>
 
-        <input type="radio" name="poetry" id="poetry" value="poetry">
+        <input type="radio" name="upload" id="poetry" value="poetry">
           <label for="poetry">Poetry
           </label>
 
-        <input type="radio" name="photo" id="photo">
+        <input type="radio" name="upload" id="photo">
           <label for="photo">Photography 
           </label>
 
-        <input type="radio" name="painting" id="painting">
+        <input type="radio" name="upload" id="painting">
           <label for="painting">Painting
           </label>
 
-        <input type="radio" name="video" id="video">
+        <input type="radio" name="upload" id="video">
           <label for="video">Video 
           </label>
 
-        <input type="text" name="other" id="other">
-          <label for="other">Other...
+        <input type="radio" name="upload" id="other">
+          <label for="other">Other
           </label>
       </div>
 
@@ -43,25 +43,44 @@
 </template>
 
 <script>
+var AWS = require("aws-sdk");
+var s3 = new AWS.S3();
+
+var myBucket = "testbucketforflightpath";
+var myKey = "spacelane";
+
+s3.createBucket({ Bucket: myBucket }, function(err, data) {
+  if (err) {
+    console.log(err);
+  } else {
+    params = { Bucket: myBucket, Key: myKey, Body: "A REAL UPLOAD!" };
+    s3.putObject(params, function(err, data) {
+      if (err) {
+        console.log(err);        
+      } else {
+        console.log("Successfully uploaded data to myBucket/myKey");
+      }
+    });
+  }
+});
+
 export default {
   name: "Submit",
-  data(){
-      return {
-          categorySelected: 0
-      }
+  data() {
+    return {
+      categorySelected: 0
+    };
   }
 };
 </script>
 
 <style>
-
 form {
-    width: 550px;
-    height: auto;
-    margin: auto;
+  width: 550px;
+  height: auto;
+  margin: auto;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
-
 </style>

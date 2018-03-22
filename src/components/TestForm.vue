@@ -1,7 +1,7 @@
 <template>
-  <form enctype="multipart/form-data" @submit.prevent="submitFile()">
+  <form enctype="multipart/form-data" @submit.prevent="(e)=>submitFile(e)">
       <label for="file">Shabu?</label>
-      <input type="file" name="" id="file" ref="file" v-on:change="handleFileUpload()">
+      <input type="file" name="foo" id="file" ref="file" v-on:change="handleFileUpload()">
       <button type="submit">DO IT!</button>
   </form>  
 </template>
@@ -15,15 +15,12 @@ export default {
       // validate file type
       this.file = this.$refs.file.files[0];
     },
-    submitFile(){
+    submitFile(e){
       let fd = new FormData()
-      fd.append('file', this.file)
+      fd.append('file', this.file)      
 
       fetch('http://localhost:5000/tester', {
         method: "POST",
-        headers: {
-          "Content-Type" : "multipart/form-data"
-          },
         body: fd
       })
         .then(res => res.json())

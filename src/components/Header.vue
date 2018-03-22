@@ -7,13 +7,14 @@
     
     <nav>
       <ul>
-        <router-link tage="li" to="home">Home</router-link>
-        <router-link tage="li" to="featured">Fiction</router-link>
-        <router-link tage="li" to="featured">Poetry</router-link>
-        <router-link tage="li" to="featured">Visual Art</router-link>
-        <router-link tage="li" to="submit">Submit Work</router-link>
-        <router-link tage="li" to="about">About</router-link>
-        <router-link tage="li" to="contact">Contact</router-link>
+        <router-link tag="li" to="home">Home</router-link>
+        <router-link tag="li" to="featured">Fiction</router-link>
+        <router-link tag="li" to="featured">Poetry</router-link>
+        <router-link tag="li" to="featured">Visual Art</router-link>
+        <router-link tag="li" to="submit">Submit Work</router-link>
+        <router-link tag="li" to="about">About</router-link>
+        <router-link tag="li" to="contact">Contact</router-link>
+        <router-link tag="li" to="manager">Manager</router-link>
       </ul>
     </nav>
   </header>
@@ -45,7 +46,8 @@ nav ul {
   list-style: none;
 }
 
-nav ul a {
+nav ul li {
+  cursor: pointer;
   color: black;
   text-decoration: none;
 }

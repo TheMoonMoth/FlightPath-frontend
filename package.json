@@ -10,6 +10,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "aws-sdk": "^2.212.1",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vuetify": "^1.0.9",
@@ -63,11 +64,11 @@
   ],
   "eslintConfig": {
     "parserOptions": {
-      "sourceType": "module",  
+      "sourceType": "module",
       "ecmaFeatures": {
-        "ecmaVersion": 6              
+        "ecmaVersion": 6
       }
-    }, 
+    },
     "env": {
       "browser": true,
       "node": true
