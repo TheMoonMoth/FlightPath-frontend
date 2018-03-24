@@ -4,7 +4,10 @@ import Main from "@/components/Main";
 import Featured from "@/components/Features";
 import Submit from "@/components/Submit";
 import Manager from "@/components/Manager";
-import Formerator from "@/components/TestForm"
+import Formerator from "@/components/TestForm";
+import Poetry from "@/components/Poetry";
+import Fiction from "@/components/Fiction";
+import Art from "@/components/Visualart";
 
 Vue.use(Router);
 
@@ -31,9 +34,19 @@ export default new Router({
       component: Manager
     },
     {
-      path: "/formerator",
-      name: "Formerator",
-      component: Formerator
+      path: "/poetry",
+      name: "Poetry",
+      component: Poetry
+    },
+    {
+      path: "/fiction",
+      name: "Fiction",
+      component: Fiction
+    },
+    {
+      path: "/visualart",
+      name: "Art",
+      component: Art
     }
   ]
 });
