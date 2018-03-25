@@ -1,6 +1,6 @@
 <template>
     <article>
-        <h2>Poems for days</h2>
+        <h1>Poems for days</h1>
         <section v-for="poem in $store.state.poetry" :key="poem.id">
             <h3>{{poem.title}}</h3>
             <h4>{{poem.author}}</h4>
@@ -39,8 +39,10 @@ article section {
   padding: 40px 150px;
 }
 
-article section h3 {
-  text-decoration: underline;
+article section:nth-of-type(2),
+article section:nth-of-type(2) p {
+  align-items: flex-end;
+  text-align: right;
 }
 
 article h1 {
@@ -52,6 +54,26 @@ article h1 {
   align-items: flex-start;
   width: calc(100% - 320px);
   padding: 95px 25px 20px 25px;
+  background-image: url(../assets/eye.png);
+  background-size: 170vmin;
+  background-position: 0% 40%;
+}
+
+section h3 {
+  font-weight: 100;
+  font-size: 2rem;
+  text-decoration: none;
+  border-bottom: 1px solid black;
+}
+
+section h4 {
+  font-weight: 100;
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+}
+
+section p {
+  font-family: "Lora"
 }
 
 </style>

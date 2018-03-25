@@ -39,19 +39,35 @@ article section {
   padding: 40px 150px;
 }
 
-article section h3 {
-  text-decoration: underline;
-}
-
 article h1 {
   font-size: 2.2rem;
-  border-bottom: 1px solid black;
+  color:rgb(196, 255, 213);
   font-weight: 100;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: calc(100% - 320px);
   padding: 95px 25px 20px 25px;
+  background-image: url(../assets/mars1.jpg);
+  background-size: 170vmin;
+  background-position: 0% 83%;
+}
+
+section h3 {
+  font-weight: 100;
+  font-size: 2rem;
+  text-decoration: none;
+  border-bottom: 1px solid black;
+}
+
+section h4 {
+  font-weight: 100;
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+}
+
+section p {
+  font-family: "Lora"
 }
 
 </style>

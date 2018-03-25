@@ -1,11 +1,11 @@
 <template>
   <main>
       <article>
-        <h1>Featured Content:</h1>
+        <h1>Featured Content&nbsp;</h1>
         <section v-for="f in $store.state.features" :key="f.id">
-          <h2>Featured {{f.category}}</h2>
+          <h2>{{f.category}}</h2>
           <h3>{{f.title}}</h3>
-          <h4>By: {{f.author}}</h4>
+          <h4>{{f.author}}</h4>
 
           <div v-if="f.category === 'Art'">
             <img :src="f.body[0]" :alt="f.title">
@@ -14,6 +14,8 @@
           <div v-else>
             <p v-for="(para, index) in f.body" :key="index">{{para}}</p>
           </div>
+
+          <h5>Donate</h5>
 
         </section>
       </article>
@@ -49,18 +51,51 @@ article section {
   padding: 40px 150px;
 }
 
-article section h3 {
-  text-decoration: underline;
-}
-
 article h1 {
   font-size: 2.2rem;
-  border-bottom: 1px solid black;
+  color: rgb(210, 230, 255);
   font-weight: 100;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: calc(100% - 320px);
   padding: 95px 25px 20px 25px;
+  background-image: url(../assets/sats.jpg);
+  background-size: 170vmin;
+  background-position: 0% 0%;
 }
+
+section h2 {
+  font-weight: 100;
+  margin-bottom: 20px;
+}
+
+section h3 {
+  font-weight: 100;
+  font-size: 2rem;
+  text-decoration: none;
+  border-bottom: 1px solid black;
+}
+
+section h4 {
+  font-weight: 100;
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+}
+
+section div p {
+  font-family: "Lora"
+}
+
+section div img {
+  height: 70vh;
+  width: auto;
+}
+
+section h5 {
+  font-weight: 100;
+  font-size: 1.2rem;
+  margin-top: 25px;
+}
+
 </style>

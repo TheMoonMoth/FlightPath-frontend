@@ -1,16 +1,17 @@
 <template>
-  <form action="post">
+  <form @submit.prevent="submit()">
       
-      <label for="creator">Creators name: 
-          <input type="text" name="creator" id="creator">
+      <label for="creator">Your Name: 
+          <input type="text" name="creator" id="creator" v-validate="{required: true}">
+          <span v-show="errors.has('email')">{{ errors.first('email') }}</span>
       </label>
 
-      <label for="email">Email:
+      <label for="email">Your Email:
           <input type="email" name="mail" id="email">
       </label>
       
-      <div>
-      <p>Select submission type:</p>  
+      <div id="typer">
+        <p>Select submission type:</p>  
         <input type="radio" name="upload" id="fiction">
           <label for="fiction">Fiction
           </label>
@@ -46,26 +47,17 @@
 var AWS = require("aws-sdk");
 var s3 = new AWS.S3();
 
-var myBucket = "testbucketforflightpath";
-var myKey = "spacelane";
-
-s3.createBucket({ Bucket: myBucket }, function(err, data) {
-  if (err) {
-    console.log(err);
-  } else {
-    params = { Bucket: myBucket, Key: myKey, Body: "A REAL UPLOAD!" };
-    s3.putObject(params, function(err, data) {
-      if (err) {
-        console.log(err);        
-      } else {
-        console.log("Successfully uploaded data to myBucket/myKey");
-      }
-    });
-  }
-});
 
 export default {
   name: "Submit",
+  methods: {
+    submit: (e)=>{
+      //verify document
+      //post just the document to aws
+      //wait until response comes back with url
+      //post full form to heroku
+    }
+  },
   data() {
     return {
       categorySelected: 0

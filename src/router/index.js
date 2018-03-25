@@ -8,6 +8,7 @@ import Formerator from "@/components/TestForm";
 import Poetry from "@/components/Poetry";
 import Fiction from "@/components/Fiction";
 import Art from "@/components/Visualart";
+import EdMain from "@/components/Editor/Main";
 
 Vue.use(Router);
 
@@ -29,9 +30,9 @@ export default new Router({
       component: Submit
     },
     {
-      path: "/manager",
-      name: "Manager",
-      component: Manager
+      path: "/editor-main",
+      name: "Editor Main",
+      component: EdMain
     },
     {
       path: "/poetry",

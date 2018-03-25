@@ -11,16 +11,16 @@
       <h4>{{ $store.state.theme }}</h4>
     </aside>
 
-    <nav>
-        <router-link tag="p" to="featured">Home</router-link>
-        <router-link tag="p" to="fiction">Fiction</router-link>
-        <router-link tag="p" to="poetry">Poetry</router-link>
-        <router-link tag="p" to="visualart">Visual Art</router-link>
-        <router-link tag="p" to="submit">Submit Work</router-link>
-        <router-link tag="p" to="about">About</router-link>
-        <router-link tag="p" to="contact">Contact</router-link>
-        <router-link tag="p" to="manager">Manager</router-link>
-    </nav>
+    <ul>
+        <router-link tag="li" to="featured">Home</router-link>
+        <router-link tag="li" to="fiction">Fiction</router-link>
+        <router-link tag="li" to="poetry">Poetry</router-link>
+        <router-link tag="li" to="visualart">Visual Art</router-link>
+        <router-link tag="li" to="submit">Submit Work</router-link>
+        <router-link tag="li" to="about">About</router-link>
+        <router-link tag="li" to="contact">Contact</router-link>
+        <router-link tag="li" to="editor-main">Editor Tools</router-link>
+    </ul>
   </header>
 </template>
 
@@ -32,15 +32,24 @@ export default {
 
 <style scoped>
 
+aside {
+  padding-bottom: 10px;
+  border-bottom: 1px solid white;
+}
+
 aside p {
+  padding-top: 5px;
   color: #00e7ff;
   font-family: "Quicksand";
   font-weight: 100;
+  font-size: .8rem;
+  letter-spacing: .4rem;
   text-align: center;
 }
 
 aside h4 {
   color: #00e7ff;
+  letter-spacing: .2rem;
   font-family: "Quicksand";
   font-weight: 100;
   text-align: center;
@@ -77,19 +86,22 @@ h2 {
   margin-top: 25px;
 }
 
-nav {
-  width: 50%;
+ul {
+  width: 100%;
   font-family: "Quicksand";
+  font-size: 1.4rem;
   font-weight: 100;
+  letter-spacing: .3rem;
   width: 100%;
   margin-left: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   list-style: none;
+  padding: 5px 0;
 }
 
-nav p {
+ul li {
   cursor: pointer;
   color: #00e7ff;
   text-decoration: none;
