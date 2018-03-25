@@ -21,6 +21,28 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+
+article{
+  width: calc(100% - 290px);
+  display: flex;
+  flex-direction: column;
+  border: 5px solid red;
+}
+
+article section {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 25px;
+}
+
+article section h3 {
+    text-decoration: underline;
+}
+
+article section img {
+    width: 400px;
+    height: auto;
+}
 
 </style>

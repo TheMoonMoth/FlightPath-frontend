@@ -21,6 +21,37 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+
+article {
+  font-family: "Quicksand";
+  font-weight: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+article section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: calc(100% - 500px);
+  padding: 40px 150px;
+}
+
+article section h3 {
+  text-decoration: underline;
+}
+
+article h1 {
+  font-size: 2.2rem;
+  border-bottom: 1px solid black;
+  font-weight: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: calc(100% - 320px);
+  padding: 95px 25px 20px 25px;
+}
 
 </style>

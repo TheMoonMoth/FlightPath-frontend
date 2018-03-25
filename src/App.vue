@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <Header></Header>
-    <Stub></Stub>
     <router-view/>
     <Footer></Footer>
   </div>
@@ -11,14 +10,12 @@
 import { mapActions } from "vuex";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import Stub from "./components/Stub";
 
 export default {
   name: "App",
   components: {
     Footer,
     Header,
-    Stub
   },
   created() {
     this.$store.dispatch("fetchFeatures")
@@ -42,5 +39,6 @@ text light blue: #00e7ff
 body {
   margin: 0;
 }
+
 
 </style>

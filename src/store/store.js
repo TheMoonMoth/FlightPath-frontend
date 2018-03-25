@@ -5,6 +5,9 @@ Vue.use(Vuex);
 
 const state = {
   marquee: "Welcome, please have a seat while we build the page.",
+  vol: 1,
+  issue: "May, 2018",
+  theme: "Exploring The Unknown",
   features: [],
   fiction: {},
   poetry: {},
@@ -27,6 +30,7 @@ const mutations = {
 };
 
 const apiUrlDev = "http://localhost:5000";
+const apiUrlProd = "https://spacelanedb.herokuapp.com";
 
 const actions = {
   fetchFeatures: ({ commit }) => {
