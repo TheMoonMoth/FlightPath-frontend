@@ -1,40 +1,36 @@
 <template>
     <article>
         <h1>Editor Tools</h1>
-        <b-tabs>
-            <b-tab title="All-Submissions" active>
-                <br>I'm the first fading tab
-            </b-tab>
-            <b-tab title="Fiction" >
-                <br>I'm the second tab content
-            </b-tab>
-            <b-tab title="Poetry" >
-                <br>I'm the poetry tab content
-            </b-tab>
-            <b-tab title="Art" >
-                <br>I'm the Art tab content
-            </b-tab>
-            <b-tab title="Accepted" >
-                <br>I have all the accepted work! 
-            </b-tab>
-            <b-tab title="Rejected" >
-                <br>Great work but not for us. 
-            </b-tab>
-            <b-tab title="disabled" disabled>
-                <br>Disabled tab!
-            </b-tab>
-        </b-tabs>
+        <ul>
+            <router-link tag="li" to="all">ALL SUBMISSIONS</router-link>
+            <router-link tag="li" to="fiction">FICTION</router-link>
+            <router-link tag="li" to="poetry">POETRY</router-link>
+            <router-link tag="li" to="art">ART</router-link>
+            <router-link tag="li" to="accepted">ACCEPTED</router-link>
+            <router-link tag="li" to="rejected">REJECTED</router-link>
+        </ul>
+        <div v-if="$route.params.category = 'all'">
+            <AllSubmissions></AllSubmissions>
+        </div>
+
+        <div v-else-if="$route.params.category = 'editor-main'">
+            <p>Wassup</p>
+        </div>
     </article> 
 </template>
 
 <script>
+import AllSubmissions from "@/components/Editor/AllSubmissions"
+
 export default {
-  name: "EdMain"
+  name: "EdMain",
+  components: {
+      AllSubmissions
+  }
 };
 </script>
 
 <style scoped>
-
 article {
   font-family: "Quicksand";
   font-weight: 100;
@@ -57,4 +53,17 @@ article h1 {
   background-position: 0% 83%;
 }
 
+article ul {
+  font-size: 1rem;
+  color: rgb(0, 0, 0);
+  font-weight: 100;
+  display: flex;
+  align-items: space-between;
+  width: calc(100% - 320px);
+  padding: 20px 25px;
+}
+
+article ul li {
+    margin-right: 50px;
+}
 </style>

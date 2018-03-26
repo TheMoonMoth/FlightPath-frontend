@@ -35,6 +35,7 @@ text light blue: #00e7ff
 
 * {
   margin: 0;
+  list-style: none;
 }
 
 body {

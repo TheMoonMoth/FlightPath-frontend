@@ -9,6 +9,7 @@ import Poetry from "@/components/Poetry";
 import Fiction from "@/components/Fiction";
 import Art from "@/components/Visualart";
 import EdMain from "@/components/Editor/Main";
+import AllSubmissions from "@/components/Editor/AllSubmissions"
 
 Vue.use(Router);
 
@@ -30,9 +31,36 @@ export default new Router({
       component: Submit
     },
     {
-      path: "/editor-main",
+      path: "/editor-main/:category",
       name: "Editor Main",
-      component: EdMain
+      component: EdMain,
+      children: [
+        {
+          path: "all",
+          name: "AllSubmissions",
+          component: AllSubmissions
+        },
+        {
+          path: "fiction",
+          name: "Fiction",
+          component: Fiction
+        },
+        {
+          path: "poetry",
+          name: "Poetry",
+          component: Poetry
+        }
+        // {
+        //   path: "accepted",
+        //   name: "Accepted",
+        //   component: Accepted
+        // },
+        // {
+        //   path: "rejected",
+        //   name: "Rejected",
+        //   component: Rejected
+        // }
+      ]
     },
     {
       path: "/poetry",
