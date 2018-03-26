@@ -11,12 +11,12 @@
   },
   "dependencies": {
     "aws-sdk": "^2.212.1",
-    "axios": "^0.18.0",
     "bootstrap-vue": "^2.0.0-rc.2",
     "vee-validate": "^2.0.6",
     "vue": "^2.5.2",
     "vue-clip": "^1.0.0",
     "vue-collapse": "^1.0.31",
+    "vue-pdf": "^3.2.2",
     "vue-router": "^3.0.1",
     "vue-tab": "0.0.0",
     "vue-tabs-component": "^1.4.0",
