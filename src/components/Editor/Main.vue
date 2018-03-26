@@ -9,45 +9,45 @@
             <router-link tag="li" to="subs-accepted">ACCEPTED</router-link>
             <router-link tag="li" to="subs-rejected">REJECTED</router-link>
         </ul>
-        <div v-if="$route.params.category === 'subs-all'">
-            <AllSubmissions></AllSubmissions>
-        </div>
-
-        <div v-if="$route.params.category === 'subs-fiction'">
-            <Fiction></Fiction>
-        </div>
-
-        <div v-if="$route.params.category === 'subs-poetry'">
-            <Poetry></Poetry>
-        </div>
-
-        <div v-if="$route.params.category === 'subs-art'">
-            <Art></Art>
-        </div>
-
-        <div v-if="$route.params.category === 'subs-accepted'">
-            <Accepted></Accepted>
-        </div>
         
-        <div v-if="$route.params.category === 'subs-rejected'">
-            <Rejected></Rejected>
-        </div>
+        <AllSubmissions v-if="$route.params.category === 'subs-all'"></AllSubmissions>
+
+        <Fiction v-if="$route.params.category === 'subs-fiction'"></Fiction>
+
+        <Poetry v-if="$route.params.category === 'subs-poetry'"></Poetry>
+
+        <Art v-if="$route.params.category === 'subs-art'"></Art>
+
+        <Accepted v-if="$route.params.category === 'subs-accepted'"></Accepted>
+        
+        <Rejected v-if="$route.params.category === 'subs-rejected'"></Rejected>
     </article> 
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 import AllSubmissions from "@/components/Editor/AllSubmissions";
-import Fiction from './Fiction';
-import Poetry from './Poetry';
-import Art from './Art';
-import Accepted from './Accepted';
-import Rejected from './Rejected';
+import Fiction from "./Fiction";
+import Poetry from "./Poetry";
+import Art from "./Art";
+import Accepted from "./Accepted";
+import Rejected from "./Rejected";
 
 export default {
   name: "EdMain",
   components: {
-      AllSubmissions
-  }
+    AllSubmissions,
+    Fiction,
+    Poetry,
+    Art,
+    Accepted,
+    Rejected
+  },
+  mounted() {
+    this.$store.dispatch("fetchSubmissions");
+  },
+  methods: mapActions(["fetchSubmissions"])
 };
 </script>
 
@@ -82,9 +82,11 @@ article ul {
   align-items: space-between;
   width: calc(100% - 320px);
   padding: 20px 25px;
+  border-bottom: 1px solid black;
 }
 
 article ul li {
-    margin-right: 50px;
+  margin-right: 50px;
+  cursor: pointer;
 }
 </style>

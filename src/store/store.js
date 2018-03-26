@@ -11,7 +11,8 @@ const state = {
   features: [],
   fiction: {},
   poetry: {},
-  art: {}
+  art: {},
+  submissions: {}
 };
 
 const mutations = {
@@ -26,6 +27,9 @@ const mutations = {
   },
   stateArt(state, json) {
     state.art = json;
+  },
+  stateSubmissions(state, json) {
+    state.submissions = json;
   }
 };
 
@@ -72,6 +76,13 @@ const actions = {
       .catch(error => {
         console.log(error.statusText);
       });
+  },
+  fetchSubmissions: ({ commit }) => {
+    fetch(apiUrlDev + "/all-submissions")
+      .then(res => res.json())
+      .then(json => {
+        commit("stateSubmissions", json);
+      })
   }
 };
 
