@@ -12,14 +12,14 @@
     </aside>
 
     <ul>
-        <router-link tag="li" to="featured">Home</router-link>
-        <router-link tag="li" to="fiction">Fiction</router-link>
-        <router-link tag="li" to="poetry">Poetry</router-link>
-        <router-link tag="li" to="visualart">Visual Art</router-link>
-        <router-link tag="li" to="submit">Submit Work</router-link>
-        <router-link tag="li" to="about">About</router-link>
-        <router-link tag="li" to="contact">Contact</router-link>
-        <router-link tag="li" to="editor-main">Editor Tools</router-link>
+        <router-link tag="li" to="/featured">Home</router-link>
+        <router-link tag="li" to="/fiction">Fiction</router-link>
+        <router-link tag="li" to="/poetry">Poetry</router-link>
+        <router-link tag="li" to="/visualart">Visual Art</router-link>
+        <router-link tag="li" to="/submit">Submit Work</router-link>
+        <router-link tag="li" to="/about">About</router-link>
+        <router-link tag="li" to="/contact">Contact</router-link>
+        <router-link tag="li" to="/editor-main/subs-all">Editor Tools</router-link>
     </ul>
   </header>
 </template>

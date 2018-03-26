@@ -2,25 +2,46 @@
     <article>
         <h1>Editor Tools</h1>
         <ul>
-            <router-link tag="li" to="all">ALL SUBMISSIONS</router-link>
-            <router-link tag="li" to="fiction">FICTION</router-link>
-            <router-link tag="li" to="poetry">POETRY</router-link>
-            <router-link tag="li" to="art">ART</router-link>
-            <router-link tag="li" to="accepted">ACCEPTED</router-link>
-            <router-link tag="li" to="rejected">REJECTED</router-link>
+            <router-link tag="li" to="subs-all">ALL SUBMISSIONS</router-link>
+            <router-link tag="li" to="subs-fiction">FICTION</router-link>
+            <router-link tag="li" to="subs-poetry">POETRY</router-link>
+            <router-link tag="li" to="subs-art">ART</router-link>
+            <router-link tag="li" to="subs-accepted">ACCEPTED</router-link>
+            <router-link tag="li" to="subs-rejected">REJECTED</router-link>
         </ul>
-        <div v-if="$route.params.category = 'all'">
+        <div v-if="$route.params.category === 'subs-all'">
             <AllSubmissions></AllSubmissions>
         </div>
 
-        <div v-else-if="$route.params.category = 'editor-main'">
-            <p>Wassup</p>
+        <div v-if="$route.params.category === 'subs-fiction'">
+            <Fiction></Fiction>
+        </div>
+
+        <div v-if="$route.params.category === 'subs-poetry'">
+            <Poetry></Poetry>
+        </div>
+
+        <div v-if="$route.params.category === 'subs-art'">
+            <Art></Art>
+        </div>
+
+        <div v-if="$route.params.category === 'subs-accepted'">
+            <Accepted></Accepted>
+        </div>
+        
+        <div v-if="$route.params.category === 'subs-rejected'">
+            <Rejected></Rejected>
         </div>
     </article> 
 </template>
 
 <script>
-import AllSubmissions from "@/components/Editor/AllSubmissions"
+import AllSubmissions from "@/components/Editor/AllSubmissions";
+import Fiction from './Fiction';
+import Poetry from './Poetry';
+import Art from './Art';
+import Accepted from './Accepted';
+import Rejected from './Rejected';
 
 export default {
   name: "EdMain",

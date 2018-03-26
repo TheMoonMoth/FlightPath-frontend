@@ -11,8 +11,9 @@
             <img :src="f.body[0]" :alt="f.title">
           </div>
 
-          <div v-else>
-            <p v-for="(para, index) in f.body" :key="index">{{para}}</p>
+         <div v-else v-for="(para, i) in f.body" :key="i">
+            <p v-if="para === ''"><br></p>
+            <p v-else>{{para}}</p>
           </div>
 
           <h5>Donate</h5>

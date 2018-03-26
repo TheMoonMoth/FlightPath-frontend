@@ -4,7 +4,10 @@
         <section v-for="poem in $store.state.poetry" :key="poem.id">
             <h3>{{poem.title}}</h3>
             <h4>{{poem.author}}</h4>
-            <p v-for="(para, i) in poem.body" :key="i">{{para}}</p>
+            <div v-for="(para, i) in poem.body" :key="i">
+              <p v-if="para === ''"><br></p>
+              <p v-else>{{para}}</p>
+            </div>
         </section>
     </article>
 </template>
