@@ -1,8 +1,7 @@
 <template>
   <main>
     <article>
-      <section v-for="sub in $store.state.submissions" :key="sub.id"
-               v-for="(tag, i) in sub.tags" v-if="tag === 5">
+      <section v-for="sub in $store.state.submissions" :key="sub.id">
         <aside>
           <div>
             <small>{{sub.category}}</small>

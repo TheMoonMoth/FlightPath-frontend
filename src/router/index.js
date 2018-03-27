@@ -24,17 +24,29 @@ export default new Router({
     {
       path: "/home",
       name: "Main",
-      component: Main
+      component: Main,
+      beforeEnter: (to, from, next) => {
+        window.scrollTo(0, 0);
+        next();
+      }
     },
     {
       path: "/featured",
       name: "Featured",
-      component: Featured
+      component: Featured,
+      beforeEnter: (to, from, next) => {
+        window.scrollTo(0, 0);
+        next();
+      }
     },
     {
       path: "/submit",
       name: "Submit",
-      component: Submit
+      component: Submit,
+      beforeEnter: (to, from, next) => {
+        window.scrollTo(0, 0);
+        next();
+      }
     },
     {
       path: "/editor-main/:category",
@@ -71,27 +83,47 @@ export default new Router({
         //   name: "Rejected",
         //   component: Rejected
         // }
-      ]
+      ],
+      beforeEnter: (to, from, next) => {
+        window.scrollTo(0, 0);
+        next();
+      }
     },
     {
       path: "/poetry",
       name: "Poetry",
-      component: Poetry
+      component: Poetry,
+      beforeEnter: (to, from, next) => {
+        window.scrollTo(0, 0);
+        next();
+      }
     },
     {
       path: "/fiction",
       name: "Fiction",
-      component: Fiction
+      component: Fiction,
+      beforeEnter: (to, from, next) => {
+        window.scrollTo(0, 0);
+        next();
+      }
     },
     {
       path: "/visualart",
       name: "Art",
-      component: Art
+      component: Art,
+      beforeEnter: (to, from, next) => {
+        window.scrollTo(0, 0);
+        next();
+      }
     },
     {
       path: "/about",
       name: "About",
-      component: About
+      component: About,
+      beforeEnter: (to, from, next) => {
+        window.scrollTo(0, 0);
+        next();
+      }
     }
   ]
 });

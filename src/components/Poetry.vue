@@ -50,7 +50,6 @@ article section:nth-of-type(2) p {
 
 article h1 {
   font-size: 2.2rem;
-  border-bottom: 1px solid black;
   font-weight: 100;
   display: flex;
   flex-direction: column;
