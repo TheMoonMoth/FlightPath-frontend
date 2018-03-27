@@ -36,22 +36,28 @@
                 View Submission
               </div>
               <div slot="collapse-body" style="padding-left:10%">
-                <nav>
-                  <p>{{currentPage}} / {{pageCount}}</p>
+                <div v-if="sub.category !== 'Art'" >
+                  <nav>
+                    <p>{{currentPage}} / {{pageCount}}</p>
+                    <button @click='lastPage()'>Last Page</button>
+                    <button @click='nextPage()'>Next Page</button>
+                  </nav>
+                  <pdf 
+                    style="width: 33rem"
+                    :src='sub.url'
+                    :page='currentPage' 
+                    @num-pages="pageCount = $event"
+                    @page-loaded="currentPage = $event"
+                  > 
+                    Show Something!
+                  </pdf>
                   <button @click='lastPage()'>Last Page</button>
                   <button @click='nextPage()'>Next Page</button>
-                </nav>
-                <pdf 
-                  style="width: 33rem"
-                  :src='url'
-                  :page='currentPage' 
-                  @num-pages="pageCount = $event"
-                  @page-loaded="currentPage = $event"
-                > 
-                  Show Something!
-                </pdf>
-                <button @click='lastPage()'>Last Page</button>
-                <button @click='nextPage()'>Next Page</button>
+                </div>
+
+                <div v-else>
+                  <img :src="sub.url" :alt="sub.title">
+                </div>
               </div>
           </collapse>
 

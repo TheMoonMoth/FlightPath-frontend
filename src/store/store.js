@@ -79,7 +79,7 @@ const apiUrlProd = "https://spacelanedb.herokuapp.com";
 
 const actions = {
   fetchFeatures: ({ commit }) => {
-    fetch(apiUrlDev + "/featured")
+    fetch(apiUrlProd + "/featured")
       .then(res => res.json())
       .then(json => {
         commit("stateFeatures", json);
@@ -89,7 +89,7 @@ const actions = {
       });
   },
   fetchFiction: ({ commit }) => {
-    fetch(apiUrlDev + "/fiction")
+    fetch(apiUrlProd + "/fiction")
       .then(res => res.json())
       .then(json => {
         commit("stateFiction", json);
@@ -99,7 +99,7 @@ const actions = {
       });
   },
   fetchPoetry: ({ commit }) => {
-    fetch(apiUrlDev + "/poetry")
+    fetch(apiUrlProd + "/poetry")
       .then(res => res.json())
       .then(json => {
         commit("statePoetry", json);
@@ -109,7 +109,7 @@ const actions = {
       });
   },
   fetchArt: ({ commit }) => {
-    fetch(apiUrlDev + "/visualart")
+    fetch(apiUrlProd + "/visualart")
       .then(res => res.json())
       .then(json => {
         commit("stateArt", json);
@@ -119,7 +119,7 @@ const actions = {
       });
   },
   fetchSubmissions: ({ commit }) => {
-    fetch(apiUrlDev + "/all-submissions")
+    fetch(apiUrlProd + "/all-submissions")
       .then(res => res.json())
       .then(json => {
         commit("stateSubmissions", json);
@@ -128,7 +128,7 @@ const actions = {
   postDoc: ({ commit }, e) => {
     console.log("Posting from Vuex", e)
     commit("stateUploading")
-    fetch(apiUrlDev + "/upload", {
+    fetch(apiUrlProd + "/upload", {
       method: "POST",
       body: new FormData(e.target),
       "Content-Type": "multipart/form-data"
@@ -140,17 +140,6 @@ const actions = {
   },
   handleFullForm: ({ commit }, e) => {
     console.log("Handling the full form now", e)
-    let form = new FormData(e.target)
-    let submitter = {
-      author: form.get("creator"),
-      email: form.get("mail"),
-      title: form.get("title"),
-      category: form.get("upload"),
-      url: this.state.submitter.url,
-      cv: form.get("cv"),
-      tags: [10, 9]
-    }
-    console.log(submitter)
   },
   clearUrl: ({ commit }) => {
     commit("clearUrlState")

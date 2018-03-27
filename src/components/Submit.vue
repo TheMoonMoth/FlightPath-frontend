@@ -31,7 +31,7 @@
           <span v-show="errors.has('email')">{{ errors.first('email') }}</span>
         </label>
 
-        <label for="title">Title of Your Work: *
+        <label for="title">Work Title: *
           <input v-model='title' type="text" name="title" id="title" v-validate:title="{required: true}">
         </label>
       </div>
@@ -93,7 +93,7 @@ import { mapActions, mapState } from "vuex";
 export default {
   name: "Submit",
   methods: {
-    ...mapActions(["postDoc"]),
+    ...mapActions(["postDoc", "clearUrl"]),
     handleFullForm(e) {
       console.log("you clicked submit")
       let submitter = {
@@ -106,7 +106,7 @@ export default {
         cv: this.cv
       };
       console.log("Sending this object", submitter)
-      fetch("http://localhost:5000/submission", {
+      fetch("https://spacelanedb.herokuapp.com/submission", {
         method: "POST",
         body: JSON.stringify(submitter),
         headers: new Headers({
@@ -115,8 +115,12 @@ export default {
       })
       .then(res => res.json())
       .then(json => console.log(json))
+      .then(thing => $store.dispatch(clearUrl))
       .catch(new Error({message: "Ya messed up somewhere"}))
     }
+  },
+  beforeDestroy(){
+    this.$store.dispatch("clearUrl")
   },
   data() {
     return {
