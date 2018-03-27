@@ -20,109 +20,111 @@
       <p>Insert explanation of other possible regulations here. Honestly, if you are genuinely submitting work then please proceed! Really excited to have you here. </p>
       <br>
     </section>
-    <form id="submissionForm">
+    <form id="submissionForm" @submit.prevent="handleFullForm">
       <div id="namers">
-        <label for="creator">Your Name: 
-          <input type="text" name="creator" id="creator" v-validate="{required: true}">
+        <label for="creator">Your Name: * 
+          <input v-model='author' type="text" name="creator" id="creator" v-validate:creator="{required: true}">
         </label>
 
-        <label for="email">Your Email:
-          <input type="email" name="mail" id="email">
+        <label for="email">Your Email: *
+          <input v-model='email' type="email" name="mail" id="email" v-validate:mail="{required: true}">
           <span v-show="errors.has('email')">{{ errors.first('email') }}</span>
+        </label>
+
+        <label for="title">Title of Your Work: *
+          <input v-model='title' type="text" name="title" id="title" v-validate:title="{required: true}">
         </label>
       </div>
 
       <div id="typer">
-        <p>Select submission type:</p>  
-        <label for="fiction">
-          <input type="radio" name="upload" id="fiction">
+        <p>Select submission type: *</p>  
+        
+        <input type="radio" name="upload" value="Fiction" v-model="category">
           Fiction
-        </label>
 
-        <label for="poetry">
-          <input type="radio" name="upload" id="poetry" value="poetry">
+
+        <input type="radio" name="upload" value="Poetry" v-model="category">
           Poetry
-        </label>
 
-        <label for="photo"> 
-          <input type="radio" name="upload" id="photo">
-          Photography
-        </label>
 
-        <label for="painting">
-          <input type="radio" name="upload" id="painting">
+        <input type="radio" name="upload" value="Art" v-model="category">
+          Digital Art
+
+        <input type="radio" name="upload" value="Art" v-model="category">
           Painting
-        </label>
 
-        <label for="video">
-          <input type="radio" name="upload" id="video">
-          Video 
-        </label>
+        <input type="radio" name="upload" value="Art" v-model="category" :disabled="true">
+          Video -- Coming Soon
 
-        <label for="other">
-          <input type="radio" name="upload" id="other">
+        <input type="radio" name="upload" value="Art" v-model="category">
           Other
-        </label>
       </div>
 
 
       <!-- this needs to be unnested -->
-      
-
-      <label for="cv">Please leave a short cover letter:
-        <textarea name="cv" id="cv" cols="140" rows="10"></textarea>
-      </label>
-
-      <input type="submit" name="submitAll" id="submitAll" value="Submit">
-    </form>
-
-    <form id="uploadForm" @submit.prevent="postDoc">
-        <h5>Upload File Here:</h5>
+      <form id="uploadForm" @submit.prevent="postDoc">
+        <h5>Upload File Here: *</h5>
         <label for="image">Only accepting PDF, PNG, and JPG at this time
-          <input type="file" name="image" id="image">
+          <input v-if="!$store.state.submitter.uploadDone" type="file" name="image" id="image">
+          <p v-else>You've already uploaded a file.</p>
         </label>
-        <div v-if="uploading">
-          <img v-if="uploaded" src="../../static/check.png" alt="Image Done" id="loaded">
+        <div v-if="$store.state.submitter.uploading">
+          <img v-if="$store.state.submitter.uploadDone" src="../../static/check.png" alt="Image Done" id="loaded">
           <img v-else src="../../static/small-loader.gif" alt="Image Coming" id="loading">
         </div>
         <input type="submit" name="submitDoc" id="submitDoc" value="Upload">
+        <h5 v-if="$store.state.submitter.uploadError">Something Went Wrong. Probably Tried The Wrong File Type</h5>
       </form>
+
+      <label for="cv">Please leave a short cover letter:
+        <textarea v-model="cv" name="cv" id="cv" cols="140" rows="10"></textarea>
+      </label>
+
+      <input v-if="$store.state.submitter.uploadDone" type="submit" name="submitAll" id="submitAll" value="Submit">
+    </form>
+
+    
   </main>
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
+
 export default {
   name: "Submit",
   methods: {
-    postDoc: e => {
-      this.uploading = 1;
-      console.log("HERE WE GO!", e);
-      fetch("http://localhost:5000/upload", {
+    ...mapActions(["postDoc"]),
+    handleFullForm(e) {
+      console.log("you clicked submit")
+      let submitter = {
+        email: this.email,
+        category: this.category,
+        title: this.title,
+        author: this.author,
+        url: this.$store.state.url,
+        tags: [10, 9],
+        cv: this.cv
+      };
+      console.log("Sending this object", submitter)
+      fetch("http://localhost:5000/submission", {
         method: "POST",
-        body: new FormData(e.target),
-        "Content-type": "multipart/form-data"
+        body: JSON.stringify(submitter),
+        headers: new Headers({
+          "Content-type": "application/json"
+        })
       })
-        .then(res => res.json())
-        .then(json => {
-          this.subUrl = json.imageurl
-          console.log(json.imageurl)
-          this.uploding = 1
-          this.uploaded = 1
-          return json.imageurl
-        })
-        .catch(()=>{
-          this.fileError = 1
-          console.log("It's all effed")
-        })
+      .then(res => res.json())
+      .then(json => console.log(json))
+      .catch(new Error({message: "Ya messed up somewhere"}))
     }
   },
   data() {
     return {
-      categorySelected: 0,
-      subUrl: "",
-      uploading: 0,
-      uploaded: 0,
-      fileError: 0
+      author: "",
+      email: "",
+      title: "",
+      category: "",
+      cv: ""
     };
   }
 };
@@ -174,7 +176,7 @@ h4 {
 }
 
 section p {
-  font-family: "Lora"
+  font-family: "Lora";
 }
 
 h5 {
@@ -206,7 +208,7 @@ h5 {
   flex-direction: column;
 }
 
-#submissionForm #uploadForm{
+#submissionForm #uploadForm {
   width: 45%;
   display: flex;
   flex-direction: column;
@@ -224,11 +226,10 @@ h5 {
   width: auto;
 }
 
-#submissionForm #cv:parent {
+#submissionForm #cv {
   display: flex;
   flex-direction: column;
   width: 100%;
   margin: 20px 0;
 }
-
 </style>

@@ -22,6 +22,7 @@ footer {
     width: 100;
     bottom: 0;
     margin-left: 270px;
+    margin-bottom: 20px;
 }
 
 footer img {

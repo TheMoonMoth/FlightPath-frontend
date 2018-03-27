@@ -12,7 +12,18 @@ const state = {
   fiction: {},
   poetry: {},
   art: {},
-  submissions: {}
+  submissions: {},
+  submitter: {
+    uploading: 0,
+    uploadDone: 0,
+    uploadError: 0,
+    title: "",
+    author: "",
+    category: "",
+    email: "",
+    cv: ""
+  },
+  url: ""
 };
 
 const mutations = {
@@ -30,6 +41,36 @@ const mutations = {
   },
   stateSubmissions(state, json) {
     state.submissions = json;
+  },
+  stateUrl(state, link){
+    state.url = link
+  },
+  clearUrlState(state){
+    state.url = ""
+  },
+  stateUploading(state){
+    state.submitter.uploading = 1
+  },
+  stateUploadDone(state){
+    state.submitter.uploadDone = 1
+  },
+  stateUploadError(state){
+    state.submitter.error = 1
+  },
+  stateTitle(state, str){
+    state.submitter.title = str
+  },
+  stateAuthor(state, str){
+    state.submitter.author = str
+  },
+  stateCategory(state, str){
+    state.submitter.category = str
+  },
+  stateEmail(state, str){
+    state.submitter.email = str
+  },
+  stateCv(state, str){
+    state.submitter.cv = str
   }
 };
 
@@ -83,6 +124,36 @@ const actions = {
       .then(json => {
         commit("stateSubmissions", json);
       })
+  },
+  postDoc: ({ commit }, e) => {
+    console.log("Posting from Vuex", e)
+    commit("stateUploading")
+    fetch(apiUrlDev + "/upload", {
+      method: "POST",
+      body: new FormData(e.target),
+      "Content-Type": "multipart/form-data"
+    })
+    .then(res => res.json())
+    .then(json => commit("stateUrl", json.imageurl))
+    .then(thing => commit("stateUploadDone"))
+    .catch(err => commit("stateUploadError"))
+  },
+  handleFullForm: ({ commit }, e) => {
+    console.log("Handling the full form now", e)
+    let form = new FormData(e.target)
+    let submitter = {
+      author: form.get("creator"),
+      email: form.get("mail"),
+      title: form.get("title"),
+      category: form.get("upload"),
+      url: this.state.submitter.url,
+      cv: form.get("cv"),
+      tags: [10, 9]
+    }
+    console.log(submitter)
+  },
+  clearUrl: ({ commit }) => {
+    commit("clearUrlState")
   }
 };
 
