@@ -45,7 +45,7 @@
               </div>
           </collapse>
 
-          <collapse v-else>
+          <collapse :selected="false" v-else>
             <div slot="collapse-header">
                 View Submission
             </div>

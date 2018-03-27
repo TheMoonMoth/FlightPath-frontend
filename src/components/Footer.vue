@@ -21,6 +21,7 @@ footer {
     justify-content: center;
     width: 100;
     bottom: 0;
+    margin-left: 270px;
 }
 
 footer img {

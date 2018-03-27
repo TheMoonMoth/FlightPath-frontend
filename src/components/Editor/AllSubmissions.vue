@@ -21,6 +21,16 @@
         </aside>
 
         <div>
+          <collapse :selected="false">
+            <div slot="collapse-header">
+                View Cover Letter
+            </div>
+
+            <div slot="collapse-body">
+              <p>{{sub.cv}}</p>
+            </div>
+          </collapse>
+
           <collapse :selected="false" v-if="sub.category !== 'Art'">
               <div slot="collapse-header">
                 View Submission
@@ -45,7 +55,7 @@
               </div>
           </collapse>
 
-          <collapse v-else>
+          <collapse :selected="false" v-else>
             <div slot="collapse-header">
                 View Submission
             </div>
