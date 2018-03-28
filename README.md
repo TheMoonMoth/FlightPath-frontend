@@ -1,4 +1,4 @@
-![Space Lane Logo](./static/SpaceLane2_darkblue.png)
+![Space Lane Logo](/static/SpaceLane2_darkblue.png)
 ## Your Science Fiction Destination
 
 Created as my capstone project at Galvanize Denver, this challenge brought all of my passions together. At its core, Space Lane is a Content Managment System. The developing tools set will help the editor organize submissions and currate the best content. More than that, this is an opportunity for creators of science fiction art to exhibit their work. By using Stripe.js, users can donate directly to authors and artists to show their appreciation for their work. Visit at [SpaceLane.org](https://www.spacelane.org) or continue to browse the repo for a code synopsis. 
