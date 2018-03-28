@@ -31,7 +31,7 @@
           <span v-show="errors.has('email')">{{ errors.first('email') }}</span>
         </label>
 
-        <label for="title">Work Title: *
+        <label for="title">Submission Title: *
           <input v-model='title' type="text" name="title" id="title" v-validate:title="{required: true}">
         </label>
       </div>
@@ -66,21 +66,23 @@
         <h5>Upload File Here: *</h5>
         <label for="image">Only accepting PDF, PNG, and JPG at this time
           <input v-if="!$store.state.submitter.uploadDone" type="file" name="image" id="image">
-          <p v-else>You've already uploaded a file.</p>
+          <p v-else>Upload Successful!</p>
         </label>
         <div v-if="$store.state.submitter.uploading">
           <img v-if="$store.state.submitter.uploadDone" src="../../static/check.png" alt="Image Done" id="loaded">
           <img v-else src="../../static/small-loader.gif" alt="Image Coming" id="loading">
         </div>
-        <input type="submit" name="submitDoc" id="submitDoc" value="Upload">
+        <input v-if="!$store.state.submitter.uploadDone" type="submit" name="submitDoc" id="submitDoc" value="Upload">
         <h5 v-if="$store.state.submitter.uploadError">Something Went Wrong. Probably Tried The Wrong File Type</h5>
       </form>
 
       <label for="cv">Please leave a short cover letter:
-        <textarea v-model="cv" name="cv" id="cv" cols="140" rows="10"></textarea>
+        <textarea v-model="cv" name="cv" id="cv" cols="120" rows="10"></textarea>
       </label>
 
+      <p v-if="this.title && this.author && this.category && this.email && !$store.state.submitter.uploadDone">Make sure you have uploaded your file please.</p>
       <input v-if="$store.state.submitter.uploadDone" type="submit" name="submitAll" id="submitAll" value="Submit">
+      <h4 v-if="$store.state.submitter.allDone">Submission Complete. Thank You!</h4>
     </form>
 
     
@@ -93,9 +95,8 @@ import { mapActions, mapState } from "vuex";
 export default {
   name: "Submit",
   methods: {
-    ...mapActions(["postDoc", "clearUrl"]),
-    handleFullForm(e) {
-      console.log("you clicked submit")
+    ...mapActions(["postDoc", "clearUrl", "allDone"]),
+    handleFullForm: function(e){
       let submitter = {
         email: this.email,
         category: this.category,
@@ -105,7 +106,6 @@ export default {
         tags: [10, 9],
         cv: this.cv
       };
-      console.log("Sending this object", submitter)
       fetch("https://spacelanedb.herokuapp.com/submission", {
         method: "POST",
         body: JSON.stringify(submitter),
@@ -113,9 +113,10 @@ export default {
           "Content-type": "application/json"
         })
       })
-      .then(res => res.json())
-      .then(json => console.log(json))
-      .then(thing => $store.dispatch(clearUrl))
+      .then(res => {
+        this.donezo = 1
+        return res.json()
+      })
       .catch(new Error({message: "Ya messed up somewhere"}))
     }
   },
@@ -128,7 +129,8 @@ export default {
       email: "",
       title: "",
       category: "",
-      cv: ""
+      cv: "",
+      donezo: 0
     };
   }
 };
@@ -214,15 +216,29 @@ h5 {
 
 #submissionForm #uploadForm {
   width: 45%;
+  border: 1px solid #00e7ff;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
   padding: 5px 5px;
+  margin: 15px 0;
 }
 
 #submissionForm #uploadForm #image {
   display: flex;
   flex-direction: column;
+  align-self: center;
+  margin: 25px 0 0 0;
+}
+
+#submitDoc {
+  color: #0b061c;
+  background-color: #00e7ff;
+  width: 80px;
+  height: 30px;
+  border-radius: 10px;
 }
 
 #uploadForm div img {
@@ -235,5 +251,9 @@ h5 {
   flex-direction: column;
   width: 100%;
   margin: 20px 0;
+}
+
+#submitAll {
+  width: 750px;
 }
 </style>

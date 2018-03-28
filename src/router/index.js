@@ -22,9 +22,9 @@ Vue.use(Router);
 export default new Router({
   routes: [
     {
-      path: "/home",
+      path: "/",
       name: "Main",
-      component: Main,
+      component: Featured,
       beforeEnter: (to, from, next) => {
         window.scrollTo(0, 0);
         next();

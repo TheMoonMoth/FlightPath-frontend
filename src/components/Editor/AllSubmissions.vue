@@ -9,7 +9,7 @@
             <h3>{{sub.author}}</h3>
           </div>
 
-          <div>
+          <div id="toolbelt">
             <Tools></Tools>
             <p v-for="(tag, i) in sub.tags" :key="i" v-if="tag === 10">Successful Submission</p>
             <p v-for="(tag, i) in sub.tags" :key="i" v-if="tag === 9">Under Review</p>
@@ -99,8 +99,6 @@ export default {
     },
     data(){
       return {
-        url:
-        'https://learnings3withcoberly.s3.amazonaws.com/1522091650551_introducingjavascriptgamedevelopment+%281%29.pdf',
         currentPage: 1,
 			  pageCount: 0,
       }
@@ -141,6 +139,16 @@ main article section {
 main article section h2,
 main article section h3 {
   font-weight: 100;
+}
+
+#toolbelt {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-end;
+}
+
+#toolbelt p {
+  text-align: right;
 }
 
 </style>

@@ -17,6 +17,7 @@ const state = {
     uploading: 0,
     uploadDone: 0,
     uploadError: 0,
+    allDone: 0,
     title: "",
     author: "",
     category: "",
@@ -71,6 +72,9 @@ const mutations = {
   },
   stateCv(state, str){
     state.submitter.cv = str
+  },
+  stateAllDone(state) {
+    state.submitter.allDone = 1
   }
 };
 
@@ -126,7 +130,6 @@ const actions = {
       })
   },
   postDoc: ({ commit }, e) => {
-    console.log("Posting from Vuex", e)
     commit("stateUploading")
     fetch(apiUrlProd + "/upload", {
       method: "POST",
@@ -135,6 +138,7 @@ const actions = {
     })
     .then(res => res.json())
     .then(json => commit("stateUrl", json.imageurl))
+    .catch(err => commit("stateUploadError"))
     .then(thing => commit("stateUploadDone"))
     .catch(err => commit("stateUploadError"))
   },
@@ -143,6 +147,9 @@ const actions = {
   },
   clearUrl: ({ commit }) => {
     commit("clearUrlState")
+  },
+  allDone: ({ commit }) => {
+    commit("stateAllDone")
   }
 };
 
