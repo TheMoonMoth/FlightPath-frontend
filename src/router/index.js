@@ -16,6 +16,7 @@ import SubsPoetry from "@/components/Editor/Poetry";
 import SubsArt from "@/components/Editor/Poetry";
 import SubsAccepted from "@/components/Editor/Accepted";
 import SubsRejected from "@/components/Editor/Rejected";
+import Contact from "@/components/Contact"
 
 Vue.use(Router);
 
@@ -120,6 +121,15 @@ export default new Router({
       path: "/about",
       name: "About",
       component: About,
+      beforeEnter: (to, from, next) => {
+        window.scrollTo(0, 0);
+        next();
+      }
+    },
+    {
+      path: "/contact",
+      name: "Contact",
+      component: Contact,
       beforeEnter: (to, from, next) => {
         window.scrollTo(0, 0);
         next();
