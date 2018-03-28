@@ -23,7 +23,7 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "Main",
+      name: "Main-Featured",
       component: Featured,
       beforeEnter: (to, from, next) => {
         window.scrollTo(0, 0);
