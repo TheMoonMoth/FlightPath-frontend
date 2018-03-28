@@ -33,7 +33,9 @@ export default {
     Stripe
   },
   data(){
-    donate: false
+    return {
+      donate: false
+    }
   }
 };
 </script>
