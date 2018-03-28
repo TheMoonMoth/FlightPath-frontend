@@ -70,7 +70,7 @@
         </label>
         <div v-if="$store.state.submitter.uploading">
           <img v-if="$store.state.submitter.uploadDone" src="../../static/check.png" alt="Image Done" id="loaded">
-          <img v-else src="../../static/small-loader.gif" alt="Image Coming" id="loading">
+          <img v-else src="../../static/planet-loader.gif" alt="Image Coming" id="loading">
         </div>
         <input v-if="!$store.state.submitter.uploadDone" type="submit" name="submitDoc" id="submitDoc" value="Upload">
         <h5 v-if="$store.state.submitter.uploadError">Something Went Wrong. Probably Tried The Wrong File Type</h5>
