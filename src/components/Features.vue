@@ -16,7 +16,7 @@
             <p v-else>{{para}}</p>
           </div>
 
-          <h5>Donate</h5>
+          <Stripe></Stripe>
 
         </section>
       </article>
@@ -25,9 +25,16 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
+import Stripe from "./Stripe"
 
 export default {
-  name: "Features"
+  name: "Features",
+  components: {
+    Stripe
+  },
+  data(){
+    donate: false
+  }
 };
 </script>
 
