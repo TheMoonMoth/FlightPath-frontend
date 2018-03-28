@@ -114,7 +114,12 @@ export default {
         })
       })
       .then(res => {
-        this.donezo = 1
+        this.$store.dispatch("allDone")
+        this.author = ""
+        this.email = ""
+        this.title = ""
+        this.category = ""
+        this.cv = ""
         return res.json()
       })
       .catch(new Error({message: "Ya messed up somewhere"}))
